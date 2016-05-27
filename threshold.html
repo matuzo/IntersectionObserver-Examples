@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Threshold IntersectionObserver Example</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="threshold">
+
+  <div class="status status--invisible">invisible</div>
+
+  <!-- This elements visiblity gets observed -->
+  <div class="box"></div>
+
+  <script>
+
+    let visiblity = 'invisible';
+    let intersectionRatio = 0;
+
+    // Create new IntersectionObserver
+    const io = new IntersectionObserver(entries => {
+      
+      // Available data when an intersection happens
+      console.log(entries);
+
+      // Element enters the viewport
+      if(entries[0].intersectionRatio !== 0) {
+        visiblity = 'visible';
+
+        // How much of the element is visible
+        intersectionRatio = entries[0].intersectionRatio;
+
+      // Element leaves the viewport 
+      } else {
+        visiblity = 'invisible';
+        intersectionRatio = 0;
+      }
+
+      updateStatus(visiblity, intersectionRatio);
+    }, {
+        // Call the observer, when the element enters the viewport,
+        // when 25%, 50%, 75% and the whole element are visible
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+    });
+    
+    // Element to be observed
+    const box = document.querySelector('.box');
+    
+    // Start observing .box
+    io.observe(box);
+
+
+    // Just necessary for displaying the current status
+    function updateStatus(visiblity, threshold) {
+      console.log(visiblity);
+
+      const status = document.querySelector('.status');
+      const percent = (threshold * 100).toFixed(2);
+      
+      status.textContent = `${percent}% ${visiblity}`;
+      status.className = 'status status--' + visiblity;
+    }
+</script>
+
+</body>
+</html>
