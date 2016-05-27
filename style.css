@@ -1,0 +1,34 @@
+/* Simple */
+
+.box {
+    background: #123456;
+    width: 40px;
+    height: 400px;
+
+    margin-top: 120vh;
+}
+
+/* Default */
+
+body {
+    font-family: Helvetica, sans-serif;
+}
+
+.status {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.status--invisible {
+    background: red;
+    color: #fff;
+}
+
+.status--visible {
+    background: green;
+    color: #fff;
+}

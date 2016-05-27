@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple IntersectionObserver Example</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="simple">
+
+  <div class="info">Element is <span class="status status--invisible">invisible</span></div>
+
+  <!-- This elements visiblity gets observed -->
+  <div class="box"></div>
+
+  <script>
+
+    let visiblity = 'invisible';
+
+    // Create new IntersectionObserver
+    const io = new IntersectionObserver(entries => {
+      
+      // Available data when an intersection happens
+      console.log(entries);
+
+      // Element enters the viewport
+      if(entries[0].intersectionRatio !== 0) {
+        visiblity = 'visible';
+
+      // Element leaves the viewport 
+      } else {
+        visiblity = 'invisible';
+      }
+
+      updateStatus(visiblity);
+    });
+    
+    // Element to be observed
+    const box = document.querySelector('.box');
+    
+    // Start observing .box
+    io.observe(box);
+
+
+    // Just necessary for displaying the current status
+    function updateStatus(visiblity) {
+      console.log(visiblity);
+
+      const status = document.querySelector('.status');
+      status.textContent = visiblity;
+      status.className = 'status status--' + visiblity;
+    }
+</script>
+
+</body>
+</html>
