@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multiple elements IntersectionObserver Example</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="multiple">
+
+  <div class="status status--invisible">No box</div>
+
+  <!-- These elements visiblity gets observed -->
+  <div class="box box1">Box 1</div>
+  <div class="box box2">Box 2</div>
+  <div class="box box3">Box 3</div>
+
+  <script>
+
+    let visiblity = 'invisible';
+    let statusText = 'No box';
+
+    // Create new IntersectionObserver
+    const io = new IntersectionObserver(entries => {
+      
+      // Available data when an intersection happens
+      console.log(entries);
+
+      // Element enters the viewport
+      if(entries[0].intersectionRatio !== 0) {
+        visiblity = 'visible';
+        statusText = entries[0].target.textContent;
+
+      // Element leaves the viewport 
+      } else {
+        visiblity = 'invisible';
+        statusText = 'No box';
+      }
+
+      updateStatus(visiblity, statusText);
+    });
+    
+    // Elements to be observed
+    const box1 = document.querySelector('.box');
+    const box2 = document.querySelector('.box2');
+    const box3 = document.querySelector('.box3');
+    
+    // Start observing .box
+    io.observe(box1);
+    io.observe(box2);
+    io.observe(box3);
+
+
+    // Just necessary for displaying the current status
+    function updateStatus(visiblity, statusText) {
+      console.log(visiblity);
+
+      const status = document.querySelector('.status');
+      status.textContent = statusText;
+      status.className = 'status status--' + visiblity;
+    }
+</script>
+
+</body>
+</html>
