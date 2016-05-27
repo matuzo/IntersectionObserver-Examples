@@ -4,9 +4,26 @@
     background: #123456;
     width: 40px;
     height: 400px;
+}
 
+.simple .box {
     margin-top: 120vh;
 }
+
+/* Different root */
+
+.container {
+    width: 400px;
+    height: 500px;
+    margin-top: 40px;
+    border: 10px solid #000;
+    overflow: auto;
+}
+
+.root .box {
+    margin-top: 600px;
+}
+
 
 /* Default */
 
