@@ -6,7 +6,7 @@
 
 <https://googlechrome.github.io/samples/intersectionobserver/index.html>
 
-Or in other words: IntersectionObservers let you know when an element enters or leaves the viewport without the need of calling getBoundingClientRect() or calling scroll event handlers.
+Or in other words: IntersectionObserver lets you know when an element enters or leaves the viewport without the need of calling getBoundingClientRect() or scroll event handlers.
 
 ## Examples
 
