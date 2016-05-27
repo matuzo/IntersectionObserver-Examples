@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Infinite Scrolling IntersectionObserver Example</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="infinite">
+
+<section class="articles">
+  <article class="article">Article 1</article>
+  <article class="article">Article 2</article>
+  <article class="article">Article 3</article>
+  <article class="article">Article 4</article>
+  <article class="article">Article 5</article>
+  <article class="article">Article 6</article>
+  <article class="article">Article 7</article>
+  <article class="article">Article 8</article>
+  <article class="article">Article 9</article>
+  <article class="article">Article 10</article>
+  <div class="sentinel"></div>
+  <article class="article">Article 11</article>
+  <article class="article">Article 12</article>
+  <article class="article">Article 13</article>
+  <article class="article">Article 14</article>
+  <article class="article">Article 15</article> 
+</section>
+  
+  <script>
+    /* Based on this example: https://googlechrome.github.io/samples/intersectionobserver/index.html */
+
+    const sentinel = document.querySelector('.sentinel');
+    const articles = document.querySelector('.articles');
+    let counter = 15;
+
+    // Append new articles to .articles
+    function addArticles(n) {
+      for (var i = 0; i < n; i++) {
+        var newArticle = document.createElement('article');
+        newArticle.classList.add('article');
+        counter++;
+        newArticle.textContent = 'Article ' + counter;
+        articles.appendChild(newArticle);
+      }
+    }
+
+    // Create new IntersectionObserver
+    const io = new IntersectionObserver(entries => {
+
+      // Only load new articles if the senitel enters the viewport
+      // not if he leaves
+      if (entries[0].intersectionRatio <= 0) {
+        return;
+      }
+
+      // Load next 10 items
+      addArticles(10);
+
+      // Move sentinel to the end
+      articles.appendChild(sentinel);
+
+      // Load next 5 items
+      addArticles(5);
+
+    });
+        
+    // Start observing .sentinel
+    io.observe(sentinel);
+
+  </script>
+
+</body>
+</html>

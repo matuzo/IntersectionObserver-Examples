@@ -36,6 +36,24 @@
     margin-top: 120vh;
 }
 
+/* Infinite Scrolling */
+
+.article {
+    height: 10vh;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.sentinel {
+    width: 1px;
+    height: 1px;
+}
+
+
 /* Default */
 
 body {
