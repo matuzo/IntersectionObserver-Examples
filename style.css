@@ -24,6 +24,12 @@
     margin-top: 600px;
 }
 
+/* Multiple elements */
+
+.multiple .box {
+    margin-top: 150vh;
+}
+
 
 /* Default */
 
